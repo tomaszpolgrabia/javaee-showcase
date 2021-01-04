@@ -45,6 +45,13 @@ it should create the jdbc driver
     ./subsystem=datasources/data-source=MyDataSource:add(driver-name="postgresql", jndi-name="java:/MyDataSource", connection-url="jdbc:postgresql://localhost:5432/simpleservice", user-name="simpleservice", password="simpleservice", min-pool-size=5, max-pool-size=15)
 
 
+## connection factory and queue
+
+```
+/subsystem=messaging-activemq/server=default/connection-factory=ConnectionFactory:add(entries=[java:/ConnectionFactory],connectors=[in-vm])
+jms-queue add --queue-address=MyQueue --entries=[java:/jms/queue/MyQueue]
+```
+
 # Useful links
 1. https://thoughts-on-java.org/jpa-persistence-xml/
 2. https://www.stenusys.com/how_to_setup_postgresql_datasource_with_wildfly/

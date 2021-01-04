@@ -6,10 +6,8 @@ dependencies {
 }
 
 ear {
-    appDirName 'src/main/app'  // use application metadata found in this folder
-    libDirName 'APP-INF/lib'
     deploymentDescriptor {  // custom entries for application.xml:
-        initializeInOrder = true
+        initializeInOrder = false
         webModule('javaee-demo1-web-' + project.version + '.war', '/api')
     }
 }
