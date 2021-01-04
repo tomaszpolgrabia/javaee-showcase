@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<head jsf:id="head"><title>JSF 2.2</title></head>
+<body jsf:id="body">
+<h2>Hello JSF</h2>
+<form jsf:id="form">
+    <button jsf:action="#{helloController.handleSubmit}">#{helloController.message}</button>
+</form>
+<button type="button" jsf:action="#{helloController.handleSimpleAction}">
+    Action me
+    <f:ajax/>
+</button>
+<ul>
+    <ui:repeat value="#{helloController.allTodos}" var="todo">
+        <li>#{todo}</li>
+    </ui:repeat>
+</ul>
+
+<ol>
+    <ui:repeat value="#{helloController.allUsers}" var="user">
+        <li>#{user.firstName}</li>
+    </ui:repeat>
+</ol>
+</body>
+</html>

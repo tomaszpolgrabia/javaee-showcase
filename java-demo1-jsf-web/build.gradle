@@ -1,0 +1,10 @@
+apply plugin: 'war'
+
+dependencies {
+    implementation project(':javaee-demo1-ejb')
+    implementation 'org.slf4j:slf4j-api:1.7.22'
+    providedCompile 'javax:javaee-api:8.0'
+    testImplementation group: 'junit', name: 'junit', version: '4.11'
+}
+
+

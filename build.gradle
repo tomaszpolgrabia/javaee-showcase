@@ -1,0 +1,42 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath "com.bmuschko:gradle-cargo-plugin:2.6.1"
+    }
+}
+
+subprojects {
+
+    group 'pl.tpolgrabia.trainings.javaee'
+    version '1.0-SNAPSHOT'
+
+    repositories {
+        mavenCentral()
+    }
+
+    apply plugin: 'com.bmuschko.cargo'
+
+    dependencies {
+        def cargoVersion = '1.6.5'
+        cargo "org.codehaus.cargo:cargo-core-uberjar:$cargoVersion",
+                "org.codehaus.cargo:cargo-ant:$cargoVersion"
+    }
+
+    cargo {
+        containerId = 'wildfly10x'
+
+        remote {
+            hostname = project.ext["cargo.wildfly.hostname"]
+            username = project.ext["cargo.wildfly.username"]
+            password = project.ext["cargo.wildfly.password"]
+
+            containerProperties {
+                property 'cargo.jboss.management-http.port',
+                        project.ext["cargo.wildfly.port"]
+            }
+        }
+    }
+}

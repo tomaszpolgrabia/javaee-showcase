@@ -1,0 +1,15 @@
+apply plugin: 'ear'
+
+dependencies {
+    deploy project(':javaee-demo1-ejb')
+    deploy project(path: ':javaee-demo1-web', configuration: 'archives')
+}
+
+ear {
+    appDirName 'src/main/app'  // use application metadata found in this folder
+    libDirName 'APP-INF/lib'
+    deploymentDescriptor {  // custom entries for application.xml:
+        initializeInOrder = true
+        webModule('javaee-demo1-web-' + project.version + '.war', '/api')
+    }
+}

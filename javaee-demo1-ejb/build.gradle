@@ -1,0 +1,14 @@
+plugins {
+    id 'java'
+}
+
+group 'pl.tpolgrabia.trainings.javaee'
+
+sourceCompatibility = 1.8
+
+dependencies {
+    implementation 'javax:javaee-api:8.0.1'
+    // wildfly 10 version I use :-)
+    implementation 'org.slf4j:slf4j-api:1.7.22'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
