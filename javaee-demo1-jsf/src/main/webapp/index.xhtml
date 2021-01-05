@@ -89,7 +89,20 @@
     </h:column>
 </h:dataTable>
 <form jsf:id="form">
-    <button jsf:action="#{helloController.handleSubmit}" class="button is-light">#{helloController.message}</button>
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label for="message" class="label">Message</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <p class="control">
+                    <h:inputText id="message" name="message" type="text" class="input"
+                                 value="#{helloController.message}"/>
+                </p>
+            </div>
+        </div>
+    </div>
+    <h:commandButton action="#{helloController.handleSubmit}" class="button is-light" value="Submit me"/>
     <button type="button" jsf:action="#{helloController.toggleButtonClass}"
             class="button #{helloController.markedAsDanger ? 'is-danger' : 'is-light'}">
         Action me
