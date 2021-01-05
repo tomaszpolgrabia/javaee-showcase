@@ -9,12 +9,15 @@ import pl.tpolgrabia.trainings.javaee.javaeedemo.entities.User;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.List;
 
 @Named
-@RequestScoped
-public class HelloController {
+@ViewScoped
+public class HelloController implements Serializable {
+    private static final long serialVersionUID = 2780964279445984180L;
     private static final Logger logger = LoggerFactory.getLogger(HelloController.class);
 
     @EJB
@@ -24,6 +27,7 @@ public class HelloController {
     private UserDao userDao;
 
     private String message;
+    private boolean markedAsDanger = false;
 
     public String getMessage() {
         return message;
@@ -37,6 +41,10 @@ public class HelloController {
         return todosDao.findAll();
     }
 
+    public boolean isMarkedAsDanger() {
+        return markedAsDanger;
+    }
+
     public List<User> getAllUsers() {
         return userDao.findAll();
     }
@@ -46,7 +54,8 @@ public class HelloController {
         return "index";
     }
 
-    public void handleSimpleAction() {
+    public void toggleButtonClass() {
+        this.markedAsDanger = !markedAsDanger;
         logger.info("Hello action");
     }
 

@@ -90,9 +90,10 @@
 </h:dataTable>
 <form jsf:id="form">
     <button jsf:action="#{helloController.handleSubmit}" class="button is-light">#{helloController.message}</button>
-    <button type="button" jsf:action="#{helloController.handleSimpleAction}" class="button is-light">
+    <button type="button" jsf:action="#{helloController.toggleButtonClass}"
+            class="button #{helloController.markedAsDanger ? 'is-danger' : 'is-light'}">
         Action me
-        <f:ajax/>
+        <f:ajax render="@form"/>
     </button>
 </form>
 </body>
