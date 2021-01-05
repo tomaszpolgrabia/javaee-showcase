@@ -8,6 +8,21 @@ buildscript {
     }
 }
 
+plugins {
+    id 'java'
+    id "org.flywaydb.flyway" version "7.4.0"
+}
+
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.18'
+}
+
 subprojects {
 
     group 'pl.tpolgrabia.trainings.javaee'
@@ -17,7 +32,10 @@ subprojects {
         mavenCentral()
     }
 
+    apply plugin: 'java'
     apply plugin: 'com.bmuschko.cargo'
+
+    sourceCompatibility = '1.8'
 
     dependencies {
         def cargoVersion = '1.6.5'
@@ -29,14 +47,21 @@ subprojects {
         containerId = 'wildfly10x'
 
         remote {
-            hostname = project.ext["cargo.wildfly.hostname"]
-            username = project.ext["cargo.wildfly.username"]
-            password = project.ext["cargo.wildfly.password"]
+            hostname = project.ext["javaeeshowcase.cargo.wildfly.hostname"]
+            username = project.ext["javaeeshowcase.cargo.wildfly.username"]
+            password = project.ext["javaeeshowcase.cargo.wildfly.password"]
 
             containerProperties {
                 property 'cargo.jboss.management-http.port',
-                        project.ext["cargo.wildfly.port"]
+                        project.ext["javaeeshowcase.cargo.wildfly.port"]
             }
         }
     }
+}
+
+flyway {
+    url = project.ext['javaeeshowcase.flyway.url']
+    user = project.ext['javaeeshowcase.flyway.username']
+    password = project.ext['javaeeshowcase.flyway.password']
+    schemas = project.ext['javaeeshowcase.flyway.schemas']
 }
