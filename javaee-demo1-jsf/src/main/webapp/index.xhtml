@@ -1,27 +1,99 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets">
-<head jsf:id="head"><title>JSF 2.2</title></head>
+<head jsf:id="head">
+    <title>JSF 2.2</title>
+    <h:outputStylesheet name="webjars/bulma/0.9.1/css/bulma.min.css"/>
+</head>
 <body jsf:id="body">
-<h2>Hello JSF</h2>
-<form jsf:id="form">
-    <button jsf:action="#{helloController.handleSubmit}">#{helloController.message}</button>
-</form>
-<button type="button" jsf:action="#{helloController.handleSimpleAction}">
-    Action me
-    <f:ajax/>
-</button>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+        <a class="navbar-item" href="https://bulma.io">
+            <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28"/>
+        </a>
+
+        <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+        </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+            <a class="navbar-item">
+                Home
+            </a>
+
+            <a class="navbar-item">
+                Documentation
+            </a>
+
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                    More
+                </a>
+
+                <div class="navbar-dropdown">
+                    <a class="navbar-item">
+                        About
+                    </a>
+                    <a class="navbar-item">
+                        Jobs
+                    </a>
+                    <a class="navbar-item">
+                        Contact
+                    </a>
+                    <hr class="navbar-divider"/>
+                    <a class="navbar-item">
+                        Report an issue
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="buttons">
+                    <a class="button is-primary">
+                        <strong>Sign up</strong>
+                    </a>
+                    <a class="button is-light">
+                        Log in
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
 <ul>
     <ui:repeat value="#{helloController.allTodos}" var="todo">
         <li>#{todo}</li>
     </ui:repeat>
 </ul>
-
-<ol>
-    <ui:repeat value="#{helloController.allUsers}" var="user">
-        <li>#{user.firstName}</li>
-    </ui:repeat>
-</ol>
+<h:dataTable value="#{helloController.allUsers}" var="p" styleClass="table is-striped is-fullwidth">
+    <h:column>
+        <f:facet name="header">ID</f:facet>
+        <h:outputText value="#{p.id}"/>
+    </h:column>
+    <h:column>
+        <f:facet name="header">First name</f:facet>
+        <h:outputText value="#{p.firstName}"/>
+    </h:column>
+    <h:column>
+        <f:facet name="header">User name</f:facet>
+        <h:outputText value="#{p.userName}"/>
+    </h:column>
+</h:dataTable>
+<form jsf:id="form">
+    <button jsf:action="#{helloController.handleSubmit}" class="button is-light">#{helloController.message}</button>
+    <button type="button" jsf:action="#{helloController.handleSimpleAction}" class="button is-light">
+        Action me
+        <f:ajax/>
+    </button>
+</form>
 </body>
 </html>
