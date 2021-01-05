@@ -2,8 +2,6 @@ plugins {
     id 'java'
 }
 
-group 'pl.tpolgrabia.trainings.javaee'
-
 sourceCompatibility = 1.8
 
 dependencies {

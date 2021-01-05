@@ -1,6 +1,3 @@
 rootProject.name = 'javaee-demo1'
-include 'javaee-demo1-ejb'
-include 'javaee-demo1-ear'
-include 'javaee-demo1-web'
-include 'javaee-demo1-jsf'
+include ':javaee-demo1-ejb', ':javaee-demo1-ear', ':javaee-demo1-web', ':javaee-demo1-jsf'
 
