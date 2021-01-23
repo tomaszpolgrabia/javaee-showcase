@@ -4,7 +4,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                "gradlew build".execute().text
+                script {
+                    println("gradlew build".execute().text)
+                }
             }
         }
     }
