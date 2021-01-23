@@ -5,7 +5,11 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    println("gradlew build".execute().text)
+                    if (System.getProperty('os.name').startsWith('Windows')) {
+                        bat('gradlew build')
+                    } else {
+                        sh('gradlew build')
+                    }
                 }
             }
         }
