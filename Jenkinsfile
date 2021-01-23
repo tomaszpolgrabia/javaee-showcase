@@ -4,8 +4,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                def proc = "gradlew build".execute()
-                println proc.text
+                step {
+                    sh("gradlew build")
+                }
             }
         }
     }
