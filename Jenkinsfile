@@ -5,7 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    if (System.getProperty('os.name').startsWith('Windows')) {
+                    if (!isUnix() {
                         bat('gradlew build')
                     } else {
                         sh('gradlew build')
