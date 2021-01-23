@@ -4,9 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                step {
-                    sh("gradlew build")
-                }
+                sh("gradlew build")
             }
         }
     }
