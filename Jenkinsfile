@@ -6,9 +6,9 @@ pipeline {
             steps {
                 script {
                     if (!isUnix()) {
-                        bat('gradlew build')
+                        bat('gradlew --no-daemon build')
                     } else {
-                        sh('gradlew build')
+                        sh('gradlew --no-daemon build')
                     }
                 }
             }

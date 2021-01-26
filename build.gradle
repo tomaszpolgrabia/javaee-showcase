@@ -63,5 +63,5 @@ flyway {
     url = project.ext['javaeeshowcase.flyway.url']
     user = project.ext['javaeeshowcase.flyway.username']
     password = project.ext['javaeeshowcase.flyway.password']
-    schemas = project.ext['javaeeshowcase.flyway.schemas']
+    schemas = project.ext['javaeeshowcase.flyway.schemas'].split(',')
 }
